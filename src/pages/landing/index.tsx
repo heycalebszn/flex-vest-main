@@ -4,7 +4,6 @@ import {
   TrendingUp, 
   ChevronRight, 
   CheckCircle, 
-  ChevronDown, 
   Twitter,
   Instagram,
   Linkedin,
