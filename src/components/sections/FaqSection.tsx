@@ -94,7 +94,7 @@ export default function FAQSection() {
           <div className="inline-block px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-sm font-medium mb-4">
             Got Questions?
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Frequently Asked Questions</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Frequently Asked Questions</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Everything you need to know about saving with FlexVest. Can't find what you're looking for?{' '}
             <a href="#contact" className="text-indigo-600 font-medium hover:text-indigo-800 transition-colors">

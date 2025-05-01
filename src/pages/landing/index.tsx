@@ -301,7 +301,7 @@ export default function FlexVestLandingPage() {
       <section id="roadmap" className="py-16 bg-white">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Roadmap</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Our Roadmap</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               We're building FlexVest to be the best dollar savings platform for Nigerians.
             </p>
