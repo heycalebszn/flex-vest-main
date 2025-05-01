@@ -14,8 +14,13 @@ import {
   Linkedin,
   Clock,
   Zap,
-  Lock
+  Lock,
+  ArrowRight
 } from 'lucide-react';
+import TestimonialSection from '../../components/sections/TestimonialSection';
+import HowItWorksSection from '../../components/sections/HowItworks';
+import { sol } from '../../assets';
+import ConnectButton from '../../components/providers/ConnectButton';
 
 // Main App Component
 export default function FlexVestLandingPage() {
@@ -24,6 +29,10 @@ export default function FlexVestLandingPage() {
   const [showDollarValue, setShowDollarValue] = useState(false);
   const [nairaDollarValue, setNairaDollarValue] = useState(0);
   const [nairaDollarHistory, setNairaDollarHistory] = useState<any[]>([]);
+  const [isVisible, setIsVisible] = useState(false);
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   useEffect(() => {
     // Track which section is in view for navigation highlighting
@@ -120,17 +129,17 @@ export default function FlexVestLandingPage() {
   return (
     <div className="flex flex-col min-h-screen font-sans bg-gray-50 text-gray-900">
       {/* Navigation */}
-      <nav className="fixed w-full bg-white shadow-md z-50 py-4">
-        <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
+      <nav className={`fixed w-full bg-white shadow-lg z-50 transition-all duration-300`}>
+        <div className="container mx-auto px-4 md:px-6 flex justify-between items-center h-16 md:h-20">
           <div className="flex items-center space-x-2">
-            <div className="bg-blue-600 text-white p-2 rounded-md">
+            <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-2 rounded-md">
               <ShieldCheck size={24} />
             </div>  
-            <span className="text-xl font-bold text-blue-800">FlexVest</span>
+            <span className="text-xl font-bold bg-gradient-to-r from-blue-800 to-blue-600 bg-clip-text text-transparent">FlexVest</span>
           </div>
           
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Desktop Navigation with Improved Spacing */}
+          <div className="hidden md:flex items-center space-x-10">
             <NavLink isActive={activeSection === 'home'} onClick={() => scrollToSection('home')}>Home</NavLink>
             <NavLink isActive={activeSection === 'features'} onClick={() => scrollToSection('features')}>Features</NavLink>
             <NavLink isActive={activeSection === 'how-it-works'} onClick={() => scrollToSection('how-it-works')}>How It Works</NavLink>
@@ -139,84 +148,117 @@ export default function FlexVestLandingPage() {
           </div>
           
           <div className="hidden md:block">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors">
+            <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium py-2.5 px-5 rounded-lg transition-all transform hover:scale-105 shadow-md hover:shadow-lg">
               Connect Wallet
-            </button>
+            </button> 
+            {/* <ConnectButton /> */}
           </div>
           
-          {/* Mobile menu button */}
+          {/* Mobile menu button with improved touch target */}
           <div className="md:hidden">
-            <button onClick={toggleMenu} className="text-gray-700 focus:outline-none">
+            <button 
+              onClick={toggleMenu} 
+              className="p-2 text-gray-700 focus:outline-none rounded-md hover:bg-gray-100"
+              aria-label="Toggle menu"
+            >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
         
-        {/* Mobile Navigation Menu */}
+        {/* Mobile Navigation Menu with Animation */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white py-4 px-4 shadow-inner">
-            <div className="flex flex-col space-y-4">
+          <div className="md:hidden bg-white py-2 px-4 shadow-inner overflow-hidden animate-in slide-in-from-top duration-300">
+            <div className="flex flex-col">
               <MobileNavLink onClick={() => scrollToSection('home')}>Home</MobileNavLink>
               <MobileNavLink onClick={() => scrollToSection('features')}>Features</MobileNavLink>
               <MobileNavLink onClick={() => scrollToSection('how-it-works')}>How It Works</MobileNavLink>
               <MobileNavLink onClick={() => scrollToSection('roadmap')}>Roadmap</MobileNavLink>
               <MobileNavLink onClick={() => scrollToSection('faq')}>FAQ</MobileNavLink>
-              <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors w-full">
-                Connect Wallet
-              </button>
+              <div className="p-2">
+                <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium py-3 px-4 rounded-lg transition-colors w-full flex items-center justify-center">
+                  Connect Wallet
+                </button>
+              </div>
             </div>
           </div>
         )}
       </nav>
 
-      {/* Hero Section */}
-      <section id="home" className="pt-24 md:pt-32 pb-16 md:pb-24">
+      {/* Hero Section with Enhanced Visual Appeal */}
+      <section id="home" className="pt-28 md:pt-32 pb-16 md:pb-24 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid md:grid-cols-2 items-center gap-8 md:gap-12">
-            <div className="order-2 md:order-1">
-              <div className="flex items-center mb-3 space-x-2">
-                <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">Launching Soon</span>
-                <span className="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">Solana-Powered</span>
+          <div className="grid md:grid-cols-2 items-center gap-8 md:gap-16">
+            <div className={`order-2 md:order-1 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-8'}`}>
+              <div className="flex flex-wrap items-center gap-2 mb-4">
+                <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1.5 rounded-full flex items-center">
+                  <span className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-1.5 animate-pulse"></span>
+                  Launching Soon
+                </span>
+                <span className="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1.5 rounded-full flex items-center">
+                  <img src={sol} alt="Solana logo" className="w-3.5 h-3.5 mr-1.5 rounded-full" />
+                  Solana-Powered
+                </span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">
-                Save in Digital Dollars, <span className="text-blue-600">Beat Inflation</span>
+              
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 bg-gradient-to-r from-gray-900 via-blue-800 to-blue-600 bg-clip-text text-transparent">
+                Save in Digital Dollars, <br />
+                <span className="relative">
+                  Beat Inflation
+                  <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 8" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0,5 Q50,0 100,5 T200,5" fill="none" stroke="#3b82f6" strokeWidth="2" />
+                  </svg>
+                </span>
               </h1>
+              
               <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-lg">
                 FlexVest helps Nigerians protect their money from Naira inflation by saving in USDC on Solana — simple, secure, and accessible.
               </p>
               
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-8">
-                <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-md transition-colors flex items-center justify-center">
+                <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium py-3.5 px-7 rounded-lg transition-all transform hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center">
                   Get Started <ChevronRight size={20} className="ml-2" />
                 </button>
-                <button className="border border-blue-600 text-blue-600 hover:bg-blue-50 font-medium py-3 px-6 rounded-md transition-colors flex items-center justify-center">
+                <button className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-medium py-3.5 px-7 rounded-lg transition-colors flex items-center justify-center">
                   Learn More
                 </button>
               </div>
               
-              <div className="flex items-center space-x-2 text-sm text-gray-500">
-                <CheckCircle size={16} className="text-green-500" />
-                <span>No bank account needed</span>
-                <span className="mx-2">•</span>
-                <CheckCircle size={16} className="text-green-500" />
-                <span>Low fees</span>
-                <span className="mx-2">•</span>
-                <CheckCircle size={16} className="text-green-500" />
-                <span>Instant transactions</span>
+              <div className="flex flex-wrap md:items-center md:space-x-4 gap-y-2 text-sm text-gray-600">
+                <div className="flex items-center mr-4">
+                  <div className="bg-green-50 rounded-full p-1 mr-2">
+                    <CheckCircle size={16} className="text-green-500" />
+                  </div>
+                  <span>No bank account needed</span>
+                </div>
+                <div className="flex items-center mr-4">
+                  <div className="bg-green-50 rounded-full p-1 mr-2">
+                    <CheckCircle size={16} className="text-green-500" />
+                  </div>
+                  <span>Low fees</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="bg-green-50 rounded-full p-1 mr-2">
+                    <CheckCircle size={16} className="text-green-500" />
+                  </div>
+                  <span>Instant transactions</span>
+                </div>
               </div>
             </div>
             
-            <div className="order-1 md:order-2 flex justify-center md:justify-end">
-              <div className="bg-white shadow-xl rounded-2xl overflow-hidden max-w-md w-full">
-                <div className="bg-blue-600 text-white p-6">
+            {/* Enhanced Card UI */}
+            <div className={`order-1 md:order-2 flex justify-center md:justify-end transition-all duration-700 delay-300 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-8'}`}>
+              <div className="bg-white shadow-2xl rounded-2xl overflow-hidden max-w-md w-full transform hover:scale-102 transition-transform">
+                <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6">
                   <div className="flex justify-between items-center">
                     <div>
                       <h3 className="text-lg font-semibold">Naira vs. USDC</h3>
                       <p className="text-blue-100 text-sm">See the difference in stability</p>
                     </div>
                     <button 
-                      className="p-2 bg-white bg-opacity-10 rounded-md"
+                      className="p-2 bg-white bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors"
                       onClick={() => setShowDollarValue(!showDollarValue)}
+                      aria-label="Toggle dollar value display"
                     >
                       <DollarSign size={18} />
                     </button>
@@ -228,42 +270,73 @@ export default function FlexVestLandingPage() {
                     <div className="flex justify-between items-center mb-2">
                       <span className="text-sm text-gray-500">Naira Value</span>
                       <span className="text-sm font-medium text-red-500 flex items-center">
-                        Unstable {renderMiniChart()}
+                        Volatile {renderMiniChart()}
                       </span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <span className="text-2xl font-bold">₦{nairaDollarValue.toFixed(2)}</span>
                       <span className="text-sm text-gray-500"> = $1.00</span>
                     </div>
+                    <div className="w-full bg-gray-100 rounded-full h-1.5 mt-2">
+                      <div className="bg-red-500 h-1.5 rounded-full" style={{ width: '75%' }}></div>
+                    </div>
                   </div>
                   
                   <div className="mb-6">
                     <div className="flex justify-between items-center mb-2">
                       <span className="text-sm text-gray-500">USDC Value</span>
-                      <span className="text-sm font-medium text-green-500">Stable</span>
+                      <span className="text-sm font-medium text-green-500 flex items-center">
+                        Stable
+                        <svg width="50" height="20" viewBox="0 0 50 20" className="ml-1">
+                          <path
+                            d="M1,10 L10,10 L20,10 L30,10 L40,10 L49,10"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                          />
+                        </svg>
+                      </span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <span className="text-2xl font-bold">$1.00</span>
                       <span className="text-sm text-gray-500"> = $1.00</span>
                     </div>
+                    <div className="w-full bg-gray-100 rounded-full h-1.5 mt-2">
+                      <div className="bg-green-500 h-1.5 rounded-full" style={{ width: '100%' }}></div>
+                    </div>
                   </div>
                   
-                  <div className="bg-blue-50 rounded-lg p-4">
-                    <h4 className="font-medium mb-2">Your Savings Projection</h4>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-sm">₦100,000 saved in Naira for 1 year</span>
-                      <span className="text-sm font-medium text-red-500">-22% value</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-sm">₦100,000 saved in USDC for 1 year</span>
-                      <span className="text-sm font-medium text-green-500">Value maintained</span>
+                  <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-5">
+                    <h4 className="font-medium mb-3 flex items-center">
+                      <TrendingUp size={18} className="mr-2 text-blue-600" />
+                      Your 1-Year Savings Projection
+                    </h4>
+                    <div className="space-y-3">
+                      <div className="bg-white rounded-lg p-3 shadow-sm">
+                        <div className="flex justify-between mb-1">
+                          <span className="text-sm font-medium">₦100,000 in Naira</span>
+                          <span className="text-sm font-medium text-red-500">-22% value</span>
+                        </div>
+                        <div className="w-full bg-gray-100 rounded-full h-1.5 mt-1.5">
+                          <div className="bg-red-500 h-1.5 rounded-full animate-pulse" style={{ width: '78%' }}></div>
+                        </div>
+                      </div>
+                      <div className="bg-white rounded-lg p-3 shadow-sm">
+                        <div className="flex justify-between mb-1">
+                          <span className="text-sm font-medium">₦100,000 in USDC</span>
+                          <span className="text-sm font-medium text-green-500">Value maintained</span>
+                        </div>
+                        <div className="w-full bg-gray-100 rounded-full h-1.5 mt-1.5">
+                          <div className="bg-green-500 h-1.5 rounded-full" style={{ width: '100%' }}></div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
                 
-                <div className="border-t border-gray-100 p-4">
-                  <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors w-full flex items-center justify-center">
-                    Start Saving in USDC <ChevronRight size={18} className="ml-2" />
+                <div className="border-t border-gray-100 p-5">
+                  <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium py-3 px-4 rounded-lg transition-all transform hover:scale-102 shadow-md hover:shadow-lg w-full flex items-center justify-center">
+                    Start Saving in USDC <ArrowRight size={18} className="ml-2" />
                   </button>
                 </div>
               </div>
@@ -271,6 +344,7 @@ export default function FlexVestLandingPage() {
           </div>
         </div>
       </section>
+
       
       {/* Features Section */}
       <section id="features" className="py-16 bg-gray-50">
@@ -318,64 +392,10 @@ export default function FlexVestLandingPage() {
       </section>
       
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-16 bg-white">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">How FlexVest Works</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Start saving in digital dollars in just a few simple steps.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <StepCard 
-              number="1"
-              title="Connect Your Wallet"
-              description="Link your Phantom or other Solana wallet to FlexVest with just a click."
-            />
-            <StepCard 
-              number="2"
-              title="Deposit USDC"
-              description="Add USDC to your FlexVest account using our simple deposit interface."
-            />
-            <StepCard 
-              number="3"
-              title="Create Savings Goals"
-              description="Set up personal savings goals and watch your digital dollars grow."
-            />
-          </div>
-        </div>
-      </section>
+      <HowItWorksSection />
       
       {/* Testimonials */}
-      <section id="testimonials" className="py-16 bg-blue-50">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Nigerians Love FlexVest</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Hear from people who are protecting their savings from Naira inflation.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <TestimonialCard 
-              name="Oluwaseun A."
-              role="Freelance Designer"
-              quote="Since I started saving in USDC with FlexVest, I no longer worry about my income losing value. The platform is so simple to use!"
-            />
-            <TestimonialCard 
-              name="Chioma E."
-              role="Small Business Owner"
-              quote="FlexVest has changed how I save for business expenses. With my money in digital dollars, I can plan better for the future."
-            />
-            <TestimonialCard 
-              name="Ademola T."
-              role="Student"
-              quote="As a student, I need to make my money last. FlexVest helps me save my allowance in USDC, so it keeps its value semester after semester."
-            />
-          </div>
-        </div>
-      </section>
+      <TestimonialSection />
       
       {/* Roadmap Section */}
       <section id="roadmap" className="py-16 bg-white">
@@ -546,24 +566,27 @@ export default function FlexVestLandingPage() {
 
 // Reusable Components
 const NavLink = ({ children, isActive, onClick }: any) => (
-  <button 
-    onClick={onClick}
-    className={`text-sm font-medium transition-colors ${
-      isActive ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'
-    }`}
-  >
-    {children}
-  </button>
-);
+    <button
+      onClick={onClick}
+      className={`relative font-medium transition-colors ${
+        isActive ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'
+      }`}
+    >
+      {children}
+      {isActive && (
+        <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-600 rounded-full" />
+      )}
+    </button>
+  );
 
-const MobileNavLink = ({ children, onClick }: any) => (
-  <button 
-    onClick={onClick}
-    className="text-gray-700 hover:text-blue-600 font-medium py-2 w-full text-left transition-colors"
-  >
-    {children}
-  </button>
-);
+  const MobileNavLink = ({ children, onClick }: any) => (
+    <button
+      onClick={onClick}
+      className="w-full text-left px-2 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md transition-colors"
+    >
+      {children}
+    </button>
+  );
 
 const FeatureCard = ({ icon, title, description }: any) => (
   <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
@@ -573,31 +596,6 @@ const FeatureCard = ({ icon, title, description }: any) => (
       </div>
       <h3 className="text-xl font-semibold mb-2">{title}</h3>
       <p className="text-gray-600">{description}</p>
-    </div>
-  </div>
-);
-
-const StepCard = ({ number, title, description }: any) => (
-  <div className="flex flex-col items-center text-center">
-    <div className="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mb-4">
-      {number}
-    </div>
-    <h3 className="text-xl font-semibold mb-2">{title}</h3>
-    <p className="text-gray-600">{description}</p>
-  </div>
-);
-
-const TestimonialCard = ({ name, role, quote }: any) => (
-  <div className="bg-white rounded-xl shadow-md p-6">
-    <p className="text-gray-600 mb-4 italic">"{quote}"</p>
-    <div className="flex items-center">
-      <div className="bg-blue-100 text-blue-600 rounded-full w-10 h-10 flex items-center justify-center font-bold mr-3">
-        {name.charAt(0)}
-      </div>
-      <div>
-        <h4 className="font-semibold">{name}</h4>
-        <p className="text-sm text-gray-500">{role}</p>
-      </div>
     </div>
   </div>
 );
