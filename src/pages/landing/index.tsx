@@ -3,7 +3,6 @@ import {
   ShieldCheck, 
   TrendingUp, 
   ChevronRight, 
-  DollarSign, 
   CheckCircle, 
   ChevronDown, 
   Twitter,
@@ -13,7 +12,7 @@ import {
 } from 'lucide-react';
 import TestimonialSection from '../../components/sections/TestimonialSection';
 import HowItWorksSection from '../../components/sections/HowItworks';
-import { sol } from '../../assets';
+import { sol, usd } from '../../assets';
 import FeaturesSection from '../../components/sections/FeaturesSection';
 import Navbar from '../../components/shared/Navbar';
 // import ConnectButton from '../../components/providers/ConnectButton';
@@ -199,11 +198,11 @@ export default function FlexVestLandingPage() {
                       <p className="text-blue-100 text-sm">See the difference in stability</p>
                     </div>
                     <button 
-                      className="p-2 bg-white bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors"
+                      className="p-2 bg-transparent bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors"
                       onClick={() => setShowDollarValue(!showDollarValue)}
                       aria-label="Toggle dollar value display"
                     >
-                      <DollarSign size={18} />
+                      <img src={usd} className='w-[30px]' alt="" />
                     </button>
                   </div>
                 </div>
