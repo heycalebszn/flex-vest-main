@@ -6,8 +6,6 @@ import {
   DollarSign, 
   CheckCircle, 
   ChevronDown, 
-  Menu, 
-  X, 
   Twitter,
   Instagram,
   Linkedin,
@@ -17,11 +15,12 @@ import TestimonialSection from '../../components/sections/TestimonialSection';
 import HowItWorksSection from '../../components/sections/HowItworks';
 import { sol } from '../../assets';
 import FeaturesSection from '../../components/sections/FeaturesSection';
+import Navbar from '../../components/shared/Navbar';
 // import ConnectButton from '../../components/providers/ConnectButton';
 
 // Main App Component
 export default function FlexVestLandingPage() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  //const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const [showDollarValue, setShowDollarValue] = useState(false);
   const [nairaDollarValue, setNairaDollarValue] = useState(0);
@@ -30,6 +29,7 @@ export default function FlexVestLandingPage() {
   useEffect(() => {
     setIsVisible(true);
   }, []);
+  console.log(activeSection)
 
   useEffect(() => {
     // Track which section is in view for navigation highlighting
@@ -111,76 +111,22 @@ export default function FlexVestLandingPage() {
     );
   };
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  // const toggleMenu = () => {
+  //   setIsMenuOpen(!isMenuOpen);
+  // };
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-    setIsMenuOpen(false);
-  };
+  // const scrollToSection = (sectionId: string) => {
+  //   const element = document.getElementById(sectionId);
+  //   if (element) {
+  //     element.scrollIntoView({ behavior: 'smooth' });
+  //   }
+  //   setIsMenuOpen(false);
+  // };
 
   return (
     <div className="flex flex-col min-h-screen font-sans bg-gray-50 text-gray-900">
       {/* Navigation */}
-      <nav className={`fixed w-full bg-white shadow-lg z-50 transition-all duration-300`}>
-        <div className="container mx-auto px-4 md:px-6 flex justify-between items-center h-16 md:h-20">
-          <div className="flex items-center space-x-2">
-            <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-2 rounded-md">
-              <ShieldCheck size={24} />
-            </div>  
-            <span className="text-xl font-bold bg-gradient-to-r from-blue-800 to-blue-600 bg-clip-text text-transparent">FlexVest</span>
-          </div>
-          
-          {/* Desktop Navigation with Improved Spacing */}
-          <div className="hidden md:flex items-center space-x-10">
-            <NavLink isActive={activeSection === 'home'} onClick={() => scrollToSection('home')}>Home</NavLink>
-            <NavLink isActive={activeSection === 'features'} onClick={() => scrollToSection('features')}>Features</NavLink>
-            <NavLink isActive={activeSection === 'how-it-works'} onClick={() => scrollToSection('how-it-works')}>How It Works</NavLink>
-            <NavLink isActive={activeSection === 'roadmap'} onClick={() => scrollToSection('roadmap')}>Roadmap</NavLink>
-            <NavLink isActive={activeSection === 'faq'} onClick={() => scrollToSection('faq')}>FAQ</NavLink>
-          </div>
-          
-          <div className="hidden md:block">
-            <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium py-2.5 px-5 rounded-lg transition-all transform hover:scale-105 shadow-md hover:shadow-lg">
-              Connect Wallet
-            </button> 
-            {/* <ConnectButton /> */}
-          </div>
-          
-          {/* Mobile menu button with improved touch target */}
-          <div className="md:hidden">
-            <button 
-              onClick={toggleMenu} 
-              className="p-2 text-gray-700 focus:outline-none rounded-md hover:bg-gray-100"
-              aria-label="Toggle menu"
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-        
-        {/* Mobile Navigation Menu with Animation */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-white py-2 px-4 shadow-inner overflow-hidden animate-in slide-in-from-top duration-300">
-            <div className="flex flex-col">
-              <MobileNavLink onClick={() => scrollToSection('home')}>Home</MobileNavLink>
-              <MobileNavLink onClick={() => scrollToSection('features')}>Features</MobileNavLink>
-              <MobileNavLink onClick={() => scrollToSection('how-it-works')}>How It Works</MobileNavLink>
-              <MobileNavLink onClick={() => scrollToSection('roadmap')}>Roadmap</MobileNavLink>
-              <MobileNavLink onClick={() => scrollToSection('faq')}>FAQ</MobileNavLink>
-              <div className="p-2">
-                <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium py-3 px-4 rounded-lg transition-colors w-full flex items-center justify-center">
-                  Connect Wallet
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-      </nav>
+     <Navbar />
 
       {/* Hero Section with Enhanced Visual Appeal */}
       <section id="home" className="pt-28 md:pt-32 pb-16 md:pb-24 bg-gradient-to-b from-white to-gray-50">
@@ -519,29 +465,7 @@ export default function FlexVestLandingPage() {
   );
 }
 
-// Reusable Components
-const NavLink = ({ children, isActive, onClick }: any) => (
-    <button
-      onClick={onClick}
-      className={`relative font-medium transition-colors ${
-        isActive ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'
-      }`}
-    >
-      {children}
-      {isActive && (
-        <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-600 rounded-full" />
-      )}
-    </button>
-  );
 
-  const MobileNavLink = ({ children, onClick }: any) => (
-    <button
-      onClick={onClick}
-      className="w-full text-left px-2 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md transition-colors"
-    >
-      {children}
-    </button>
-  );
 
 const RoadmapItem = ({ phase, title, features, active = false, isLast = false }: any) => (
   <div className={`relative pl-8 pb-8 ${!isLast && 'border-l-2'} ${active ? 'border-blue-600' : 'border-gray-200'}`}>
