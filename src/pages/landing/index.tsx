@@ -343,42 +343,26 @@ export default function FlexVestLandingPage() {
       </section>
       
       {/* FAQ Section */}
-      <section id="faq" className="py-16 bg-gray-50">
+      <FAQSection />
+      {/* CTA Section */}
+      <section className="py-16 bg-blue-600 text-white">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Everything you need to know about saving with FlexVest.
+          <div className="text-center max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Protect Your Money?</h2>
+            <p className="text-lg mb-8 text-blue-100">
+              Join FlexVest today and start saving in digital dollars. Your future self will thank you.
             </p>
-          </div>
-          
-          <div className="max-w-3xl mx-auto">
-            <FAQItem 
-              question="What is USDC and why should I save in it?"
-              answer="USDC is a digital dollar (stablecoin) that's always worth $1 USD. By saving in USDC instead of Naira, you protect your money from inflation and currency devaluation that affects the Nigerian Naira."
-            />
-            <FAQItem 
-              question="Do I need a bank account to use FlexVest?"
-              answer="No! FlexVest works directly with your Solana wallet. You don't need a bank account, BVN, or any traditional banking information to get started."
-            />
-            <FAQItem 
-              question="How do I get USDC to save on FlexVest?"
-              answer="You can purchase USDC on exchanges like Binance and transfer it to your Solana wallet. In future updates, we'll add direct on-ramps from Naira to USDC."
-            />
-            <FAQItem 
-              question="Is there a minimum amount I need to start with?"
-              answer="No minimum! You can start saving with any amount of USDC that makes sense for your financial situation."
-            />
-            <FAQItem 
-              question="What are the fees for using FlexVest?"
-              answer="FlexVest charges a small 0.5% fee only when you withdraw your USDC. There are no fees for deposits or maintaining your savings."
-            />
+            <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+              <button className="bg-white text-blue-600 hover:bg-blue-50 font-medium py-3 px-6 rounded-md transition-colors flex items-center justify-center">
+                Connect Wallet
+              </button>
+              <button className="border border-white text-white hover:bg-blue-700 font-medium py-3 px-6 rounded-md transition-colors flex items-center justify-center">
+                Join Waitlist
+              </button>
+            </div>
           </div>
         </div>
       </section>
-      
-      {/* CTA Section */}
-      <FAQSection />
       
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
@@ -467,27 +451,3 @@ const RoadmapItem = ({ phase, title, features, active = false, isLast = false }:
     </div>
   </div>
 );
-
-const FAQItem = ({ question, answer }: any) => {
-  const [isOpen, setIsOpen] = useState(false);
-  
-  return (
-    <div className="border-b border-gray-200 py-4">
-      <button 
-        className="flex justify-between items-center w-full text-left font-medium text-lg"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        {question}
-        <ChevronDown 
-          size={20} 
-          className={`transition-transform ${isOpen ? 'rotate-180' : ''}`} 
-        />
-      </button>
-      {isOpen && (
-        <div className="mt-2 text-gray-600">
-          {answer}
-        </div>
-      )}
-    </div>
-  );
-};
