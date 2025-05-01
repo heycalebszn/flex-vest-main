@@ -84,7 +84,7 @@ const TestimonialSection = () => {
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Why Nigerians Love FlexVest
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">

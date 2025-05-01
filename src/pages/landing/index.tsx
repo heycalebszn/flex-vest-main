@@ -431,8 +431,6 @@ export default function FlexVestLandingPage() {
   );
 }
 
-
-
 const RoadmapItem = ({ phase, title, features, active = false, isLast = false }: any) => (
   <div className={`relative pl-8 pb-8 ${!isLast && 'border-l-2'} ${active ? 'border-blue-600' : 'border-gray-200'}`}>
     <div className={`absolute left-0 -translate-x-1/2 w-4 h-4 rounded-full ${active ? 'bg-blue-600' : 'bg-gray-200'}`}></div>
