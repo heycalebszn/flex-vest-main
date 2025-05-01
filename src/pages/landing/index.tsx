@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { 
   ShieldCheck, 
-  Target, 
   TrendingUp, 
   ChevronRight, 
   DollarSign, 
@@ -12,15 +11,13 @@ import {
   Twitter,
   Instagram,
   Linkedin,
-  Clock,
-  Zap,
-  Lock,
   ArrowRight
 } from 'lucide-react';
 import TestimonialSection from '../../components/sections/TestimonialSection';
 import HowItWorksSection from '../../components/sections/HowItworks';
 import { sol } from '../../assets';
-import ConnectButton from '../../components/providers/ConnectButton';
+import FeaturesSection from '../../components/sections/FeaturesSection';
+// import ConnectButton from '../../components/providers/ConnectButton';
 
 // Main App Component
 export default function FlexVestLandingPage() {
@@ -347,49 +344,7 @@ export default function FlexVestLandingPage() {
 
       
       {/* Features Section */}
-      <section id="features" className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose FlexVest?</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              FlexVest combines the stability of digital dollars with the speed of Solana to help you achieve your financial goals.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <FeatureCard 
-              icon={<ShieldCheck className="text-blue-600" size={28} />}
-              title="Stable Dollar Savings"
-              description="Save in USDC to protect your money from Naira inflation and currency devaluation."
-            />
-            <FeatureCard 
-              icon={<Zap className="text-blue-600" size={28} />}
-              title="Fast Transactions"
-              description="Instant deposits and withdrawals powered by Solana's lightning-fast blockchain."
-            />
-            <FeatureCard 
-              icon={<Lock className="text-blue-600" size={28} />}
-              title="Self-Custody"
-              description="Your funds stay in your wallet. No intermediaries, complete control over your money."
-            />
-            <FeatureCard 
-              icon={<Target className="text-blue-600" size={28} />}
-              title="Savings Goals"
-              description="Create personalized savings goals and track your progress in real-time."
-            />
-            <FeatureCard 
-              icon={<TrendingUp className="text-blue-600" size={28} />}
-              title="Low Fees"
-              description="Only 0.5% withdrawal fee. No hidden charges, no expensive international transfer fees."
-            />
-            <FeatureCard 
-              icon={<Clock className="text-blue-600" size={28} />}
-              title="24/7 Access"
-              description="Access your money anytime, anywhere with our mobile-friendly platform."
-            />
-          </div>
-        </div>
-      </section>
+      <FeaturesSection />
       
       {/* How It Works Section */}
       <HowItWorksSection />
@@ -587,18 +542,6 @@ const NavLink = ({ children, isActive, onClick }: any) => (
       {children}
     </button>
   );
-
-const FeatureCard = ({ icon, title, description }: any) => (
-  <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
-    <div className="flex flex-col items-start">
-      <div className="bg-blue-50 p-3 rounded-lg mb-4">
-        {icon}
-      </div>
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
-      <p className="text-gray-600">{description}</p>
-    </div>
-  </div>
-);
 
 const RoadmapItem = ({ phase, title, features, active = false, isLast = false }: any) => (
   <div className={`relative pl-8 pb-8 ${!isLast && 'border-l-2'} ${active ? 'border-blue-600' : 'border-gray-200'}`}>
