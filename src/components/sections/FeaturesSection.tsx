@@ -11,6 +11,7 @@ import {
   Smartphone,
   Users
 } from 'lucide-react';
+import { sol } from '../../assets';
 
 const FeatureCard = ({ icon: Icon, title, description, index, isActive, onClick, color }: any) => {
   return (
@@ -233,7 +234,8 @@ const FeaturesSection = () => {
               </div>
               <div className="md:w-1/3 flex justify-center">
                 <div className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center">
-                  <DollarSign size={40} className="text-white" />
+                  {/* <DollarSign size={40} className="text-white" /> */}
+                  <img src={sol} alt="" />
                 </div>
               </div>
             </div>
