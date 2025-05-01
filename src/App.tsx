@@ -1,4 +1,3 @@
-import React from 'react'
 import FlexVestLandingPage from './pages/landing'
 
 const App = () => {
