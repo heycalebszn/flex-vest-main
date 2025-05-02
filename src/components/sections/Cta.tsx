@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+import ConnectButton from "../providers/ConnectButton";
+
 const Cta = () => {
+const navigate = useNavigate();
   return (
     <section className="py-16 bg-blue-600 text-white">
     <div className="container mx-auto px-4 md:px-6">
@@ -8,10 +12,11 @@ const Cta = () => {
           Join FlexVest today and start saving in digital dollars. Your future self will thank you.
         </p>
         <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-          <button className="bg-white text-blue-600 hover:bg-blue-50 font-medium py-3 px-6 rounded-md transition-colors flex items-center justify-center">
+          {/* <button className="bg-white text-blue-600 hover:bg-blue-50 font-medium py-3 px-6 rounded-md transition-colors flex items-center justify-center">
             Connect Wallet
-          </button>
-          <button className="border border-white text-white hover:bg-blue-700 font-medium py-3 px-6 rounded-md transition-colors flex items-center justify-center">
+          </button> */}
+          <ConnectButton />
+          <button className="border border-white text-white hover:bg-blue-700 font-medium py-3 px-6 rounded-md transition-colors flex items-center justify-center" onClick={() => navigate('/waitlist')}>
             Join Waitlist
           </button>
         </div>
