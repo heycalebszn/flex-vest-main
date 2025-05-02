@@ -1,55 +1,17 @@
-import { useState, useEffect } from 'react';
-import { 
-  TrendingUp, 
-  ChevronRight, 
-  CheckCircle, 
-  ArrowRight
-} from 'lucide-react';
-import TestimonialSection from '../../components/sections/TestimonialSection';
-import HowItWorksSection from '../../components/sections/HowItworks';
-import { sol, usd } from '../../assets';
-import FeaturesSection from '../../components/sections/FeaturesSection';
-import Navbar from '../../components/shared/Navbar';
-import FAQSection from '../../components/sections/FaqSection';
-import Footer from '../../components/shared/Footer';
-import Roadmap from '../../components/sections/Roadmap';
-import Cta from '../../components/sections/Cta';
-import Team from '../../components/sections/Team';
-import ConnectButton from '../../components/providers/ConnectButton';
-// import ConnectButton from '../../components/providers/ConnectButton';
+import { ChevronRight, CheckCircle, TrendingUp, ArrowRight } from "lucide-react"
+import { sol, usd } from "../../assets"
+import { useState, useEffect } from "react";
 
-// Main App Component
-export default function FlexVestLandingPage() {
-  //const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('');
-  const [showDollarValue, setShowDollarValue] = useState(false);
-  const [nairaDollarValue, setNairaDollarValue] = useState(0);
-  const [nairaDollarHistory, setNairaDollarHistory] = useState<any[]>([]);
-  const [isVisible, setIsVisible] = useState(false);
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-  console.log(activeSection)
+const Hero = () => {
+    const [isVisible, setIsVisible] = useState(false);
+    const [nairaDollarValue, setNairaDollarValue] = useState(0);
+    const [nairaDollarHistory, setNairaDollarHistory] = useState<any[]>([]);
+    const [showDollarValue, setShowDollarValue] = useState(false);
+    useEffect(() => {
+      setIsVisible(true);
+    }, []);
 
-  useEffect(() => {
-    // Track which section is in view for navigation highlighting
-    const handleScroll = () => {
-      const sections = ['home', 'features', 'how-it-works', 'testimonials', 'faq', 'roadmap'];
-      let current = '';
-      
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            current = section;
-            break;
-          }
-        }
-      }
-      
-      setActiveSection(current);
-    };
+    useEffect(() => {
 
     // Simulated Naira value fluctuation animation
     const simulateNairaFluctuation = () => {
@@ -68,8 +30,6 @@ export default function FlexVestLandingPage() {
         return newHistory;
       });
     };
-
-    window.addEventListener('scroll', handleScroll);
     // Initialize with starting values
     setNairaDollarValue(1740);
     setNairaDollarHistory([1740, 1735, 1742, 1750, 1755, 1747, 1749]);
@@ -78,58 +38,39 @@ export default function FlexVestLandingPage() {
     const interval = setInterval(simulateNairaFluctuation, 2000);
     
     return () => {
-      window.removeEventListener('scroll', handleScroll);
       clearInterval(interval);
     };
   }, []);
 
-  // Create a simple line chart for Naira fluctuation
-  const renderMiniChart = () => {
-    if (nairaDollarHistory.length < 2) return null;
-    
-    const height = 40;
-    const width = 100;
-    const max = Math.max(...nairaDollarHistory);
-    const min = Math.min(...nairaDollarHistory);
-    const range = max - min || 1;
-    
-    const points = nairaDollarHistory.map((value: any, index: any) => {
-      const x = (index / (nairaDollarHistory.length - 1)) * width;
-      const y = height - ((value - min) / range) * height;
-      return `${x},${y}`;
-    }).join(' ');
-    
-    return (
-      <svg width={width} height={height} className="chart">
-        <polyline
-          fill="none"
-          stroke="#ef4444"
-          strokeWidth="2"
-          points={points}
-        />
-      </svg>
-    );
-  };
 
-  // const toggleMenu = () => {
-  //   setIsMenuOpen(!isMenuOpen);
-  // };
-
-  // const scrollToSection = (sectionId: string) => {
-  //   const element = document.getElementById(sectionId);
-  //   if (element) {
-  //     element.scrollIntoView({ behavior: 'smooth' });
-  //   }
-  //   setIsMenuOpen(false);
-  // };
-
+    const renderMiniChart = () => {
+        if (nairaDollarHistory.length < 2) return null;
+        
+        const height = 40;
+        const width = 100;
+        const max = Math.max(...nairaDollarHistory);
+        const min = Math.min(...nairaDollarHistory);
+        const range = max - min || 1;
+        
+        const points = nairaDollarHistory.map((value: any, index: any) => {
+          const x = (index / (nairaDollarHistory.length - 1)) * width;
+          const y = height - ((value - min) / range) * height;
+          return `${x},${y}`;
+        }).join(' ');
+        
+        return (
+          <svg width={width} height={height} className="chart">
+            <polyline
+              fill="none"
+              stroke="#ef4444"
+              strokeWidth="2"
+              points={points}
+            />
+          </svg>
+        );
+      };
   return (
-    <div className="flex flex-col min-h-screen font-sans bg-gray-50 text-gray-900">
-      {/* Navigation */}
-     <Navbar />
-
-      {/* Hero Section with Enhanced Visual Appeal */}
-      <section id="home" className="pt-28 md:pt-32 pb-16 md:pb-24 bg-gradient-to-b from-white to-gray-50">
+    <section id="home" className="pt-28 md:pt-32 pb-16 md:pb-24 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid md:grid-cols-2 items-center gap-8 md:gap-16">
             <div className={`order-2 md:order-1 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-8'}`}>
@@ -159,8 +100,7 @@ export default function FlexVestLandingPage() {
               </p>
               
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-8">
-                <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium py-3.5 px-7 rounded-lg transition-all transform hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center" 
-                onClick={() => {return ( <ConnectButton /> )}}>
+                <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium py-3.5 px-7 rounded-lg transition-all transform hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center">
                   Get Started <ChevronRight size={20} className="ml-2" />
                 </button>
                 <button className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-medium py-3.5 px-7 rounded-lg transition-colors flex items-center justify-center">
@@ -288,27 +228,7 @@ export default function FlexVestLandingPage() {
           </div>
         </div>
       </section>
-
-      
-      {/* Features Section */}
-      <FeaturesSection />
-      
-      {/* How It Works Section */}
-      <HowItWorksSection />
-      
-      {/* Testimonials */}
-      <TestimonialSection />
-      
-      <Roadmap />
-      
-      {/* FAQ Section */}
-      <FAQSection />
-      <Team />
-      {/* CTA Section */}
-      <Cta />
-      
-      {/* Footer */}
-      <Footer />
-    </div>
-  );
+  )
 }
+
+export default Hero

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ShieldCheck } from 'lucide-react';
+import ConnectButton from '../providers/ConnectButton';
 
 // Define base components
 const NavLink = ({ children, isActive, onClick }: any) => (
@@ -110,9 +111,10 @@ export default function Navbar() {
         </div>
         
         <div className="hidden md:block">
-          <button className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium py-2 px-4 rounded-lg transition-all shadow-sm hover:shadow-md">
+          {/* <button className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium py-2 px-4 rounded-lg transition-all shadow-sm hover:shadow-md">
             Connect Wallet
-          </button>
+          </button> */}
+          <ConnectButton />
         </div>
         
         {/* Mobile menu button */}
@@ -150,9 +152,11 @@ export default function Navbar() {
             <MobileNavLink onClick={() => scrollToSection('roadmap')}>Roadmap</MobileNavLink>
             <MobileNavLink onClick={() => scrollToSection('faq')}>FAQ</MobileNavLink>
             <div className="py-3 pt-4">
-              <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 px-4 rounded-lg transition-colors w-full">
+              {/* <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 px-4 rounded-lg transition-colors w-full">
                 Connect Wallet
-              </button>
+              </button> */}
+
+<ConnectButton />
             </div>
           </div>
         </div>
