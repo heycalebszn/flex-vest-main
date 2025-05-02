@@ -6,7 +6,7 @@ const Team = () => {
     const team = [
       {
         name: "Jesse",
-        role: "Founder & Frontend Developer",
+        role: "Founder",
         image: rapto,
         socials: {
           github: "#",
@@ -16,7 +16,7 @@ const Team = () => {
       },
       {
         name: "Rapto",
-        role: "Tech Lead & Blockchain Developer",
+        role: "Tech Lead, Frontend & Blockchain Developer",
         image: rapto,
         socials: {
           github: "https://github.com/heycalebszn",
