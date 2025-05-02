@@ -15,7 +15,7 @@ import Footer from '../../components/shared/Footer';
 import Roadmap from '../../components/sections/Roadmap';
 import Cta from '../../components/sections/Cta';
 import Team from '../../components/sections/Team';
-import ConnectButton from '../../components/providers/ConnectButton';
+import { useNavigate } from 'react-router-dom';
 // import ConnectButton from '../../components/providers/ConnectButton';
 
 // Main App Component
@@ -26,6 +26,7 @@ export default function FlexVestLandingPage() {
   const [nairaDollarValue, setNairaDollarValue] = useState(0);
   const [nairaDollarHistory, setNairaDollarHistory] = useState<any[]>([]);
   const [isVisible, setIsVisible] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     setIsVisible(true);
   }, []);
@@ -160,7 +161,7 @@ export default function FlexVestLandingPage() {
               
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-8">
                 <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium py-3.5 px-7 rounded-lg transition-all transform hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center" 
-                onClick={() => {return ( <ConnectButton /> )}}>
+                onClick={() => navigate('/waitlist')}>
                   Get Started <ChevronRight size={20} className="ml-2" />
                 </button>
                 <button className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-medium py-3.5 px-7 rounded-lg transition-colors flex items-center justify-center">
